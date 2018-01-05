@@ -56,7 +56,7 @@
       </div>
 
         <div class="modal-body" style="color:black;">
-		<div class="form-group">
+		<!-- <div class="form-group">
 				<label for="exampleName1" style="color:grey;">Author Name</label>
 				<input class="form-control"  id="name" type="text" placeholder="John Doe" >
 		</div>
@@ -76,28 +76,41 @@
 					<option >Female</option>
 	  			</select>
 			</div>
-		</div>
+		</div> -->
 
-		<div class="form-group">
+		<!-- <div class="form-group">
 				<label for="exampleName1" style="color:grey;">Born In</label>
 				<input class="form-control"  id="bornin" type="text" placeholder="America" >
 		</div>
 
-		<div>
+		<div> -->
 
 
 		<div class="form-group">
-   		 	<label for="exampleTextarea">About Author</label>
-   		 	<textarea class="form-control" id="about" rows="4"></textarea>
-  		</div>
-      </div>
-      <div class="modal-footer">
+			<form id="user_form" method="post" action="/welcome/author/"
+							enctype="multipart/form-data">
 
-			<div class="col-md-6">
-			<button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Cancel</button>
+					{% csrf_token %}
+					{% if aForm %}
+					{{ aForm.as_p }}
+					{% else %}
+					Form not found!!
+					{% endif %}
+
+					<input type="submit" name="submit" value="Submit" />
+			</form>
+		</div>
+   		 	<!-- <label for="exampleTextarea">About Author</label> -->
+   		 	<!-- <textarea class="form-control" id="about" rows="4"></textarea> -->
+  		<!-- </div> -->
+      <!-- </div> -->
+			<!-- <div class="modal-footer"> -->
+<!--  -->
+			<!-- <div class="col-md-6"> -->
+			<!-- <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Cancel</button> -->
 			</div>
-			<div class="col-md-6">
-			<button type="button" class="btn btn-primary btn-block" data-dismiss="modal" id="submit">Save Author</button>
+			<!-- <div class="col-md-6"> -->
+				<!-- <button type="button" class="btn btn-primary btn-block" data-dismiss="modal" id="submit">Save Author</button> -->
 			</div>
 
 		</div>

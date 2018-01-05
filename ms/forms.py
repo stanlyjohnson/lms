@@ -2,23 +2,30 @@ from django import forms
 from .models import *
 
 auth = list(author.objects.all())
-choice = tuple(map(lambda x : x.name,auth))
+a = list(map(lambda x : (x.name),auth))
+t =[]
+choice =[]
+for i in a:
+    t =[]
+    t.append(i)
+    t.append(i)
+    choice.append(t)
 
 
 class auth_form(forms.ModelForm):
-    name = forms.CharField(label="",widget=forms.TextInput(attrs={'placeholder':'author','height':'100','width':'100'}))
-    age = forms.IntegerField(label="",widget=forms.NumberInput(attrs={'placeholder':'No of Halfdays'}))
-    country = forms.DateField(label="",widget=forms.TextInput(attrs={'placeholder':'country'}))
-    des = forms.CharField(label="",widget=forms.TextInput(attrs={'placeholder':'About author','height':'100','width':'100'}))
+    name = forms.CharField(label="Name",widget=forms.TextInput(attrs={'placeholder':'author','height':'100','width':'100'}))
+    age = forms.IntegerField(label="Age",widget=forms.NumberInput(attrs={'placeholder':'Age'}))
+    country = forms.DateField(label="Country",widget=forms.TextInput(attrs={'placeholder':'country'}))
+    about = forms.CharField(label="About",widget=forms.TextInput(attrs={'placeholder':'About author','height':'100','width':'100'}))
     class Meta:
         model = author
-        fields = '__all__'
+        fields = ('name','age','country','about')
 
 class book_form(forms.ModelForm):
-    name = forms.ChoiceField(label="Author",widget=forms.Select(attrs={}),choices = choice)
-    title = forms.CharField(label="",widget=forms.TextInput(attrs={'placeholder':'Title','height':'100','width':'100'}))
-    isbn = forms.SlugField(label="",widget=forms.TextInput(attrs={'placeholder':'ISBN'}))
-    des = forms.CharField(label="",widget=forms.TextInput(attrs={'placeholder':'About book','height':'100','width':'100'}))
+    writtenby = forms.ChoiceField(label="Author",widget=forms.Select(attrs={}),choices = choice)
+    title = forms.CharField(label="title",widget=forms.TextInput(attrs={'placeholder':'Title','height':'100','width':'100'}))
+    isbn = forms.SlugField(label="ISBN",widget=forms.TextInput(attrs={'placeholder':'ISBN'}))
+    prologue = forms.CharField(label="Prologue",widget=forms.TextInput(attrs={'placeholder':'prologue','height':'100','width':'100'}))
     class Meta:
-        model = author
+        model = book
         fields = '__all__'

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import View
 from .models import *
-from .forms import auth_form, book_form
+from ms.forms import *
 # Create your views here.
 def welcome (request):
     template='ms/home.html'
@@ -20,7 +20,8 @@ class Author(View):
         template = 'ms/author.html'
         authForm = auth_form(data=request.POST)
         if authForm.is_valid():
-            auth_app = authForm.save()
+            auth_app = authForm.save(commit=False)
+            auth_app.save()
         authors = author.objects.all()
         return render(request,template,{'authors':authors,  'aForm': auth_form})
 
