@@ -16,22 +16,26 @@
 		<div style='background-color:white;'>
 				<div class='row'>
 					<div class='col-md-1'>
-						<img src='static/pic/pen.ico' width=75 height=75></img>
+						{% load staticfiles %}
+						<img src='{% static "ms/img/pen.ico" %}' width=75 height=75></img>
 					</div>
-
+					{% if authDetails %}
 					<div class='col-md-11'>
-						<span style='font-weight:bold;color:black;'><?php echo $var2['name'];?></span><span style='color:grey;float:right;'>Born in <?php echo $var2['born_in']; ?></span>
+						<span style='font-weight:bold;color:black;'>{{authDetails.name}}</span><span style='color:grey;float:right;'>Born in {{authDetails.country}}</span>
 						<div class='row'>
 							<div class='col-md-4' style='color:black;'>
-							<span style='color:grey;'><?php echo $var2['age'];?> / <?php $gender=$var2['gender']; if($gender==1){echo "Male";}else{echo "Female";}?></span>
+							<span style='color:grey;'>{{authDetails.age}}</span>
 							</div>
 						</div>
 						<div class='row'>
 							<div class='col-md-4' style='color:black;'>
-							<span style='color:grey;'><?php echo $var2['about'];?></span>
+							<span style='color:grey;'>{{authDetails.about}}</span>
 							</div>
 						</div>
 					</div>
+					{% else %}
+					<span style='font-weight:bold;color:black;'>Author doesn't Exist</span>
+					{% endif %}
 				</div>
 			</div>
 
@@ -74,7 +78,7 @@
 		Navigate to Previous / Next Book
 	</div>
 	</div>
-
+{% for b in books %}
 <div class="row">
 		<?php while($row=mysqli_fetch_assoc($result3)){?>
 		<div class="col-md-10" style='background-color:white;'>
@@ -93,19 +97,20 @@
 									</div>
 
 									<div class="col-md-11">
-										<span style="font-weight:bold;color:black;"><?php echo $row['name']; ?></span><span style="color:grey;float:right;">ISBN <?php echo $row['isbn'];?></span>
+										<span style="font-weight:bold;color:black;">{{b.title}}</span><span style="color:grey;float:right;">ISBN {{b.isbn}}</span>
 										<div class="row">
 										<div class="col-md-4" style="color:black;">
 										<span style="color:grey;">by</span> <span style="font-weight:bold;">
-										<?php echo $var2['name'];?>
+										{{authDetails.name}}
 										</span>
 										</div>
 										</div>
 
 										<div class="row" >
 											<div class="col-md-11" style="color:grey;overflow: hidden;white-space:nowrap;padding-right:0px;">
-											<?php echo $row['description'];?>
+											{{b.about}}
 											</div>
+
 											<div class="col-md-1" style="color:black;padding-left:0px;padding-left:0px">
 											.........<a href="/welcome/authorDetails" ><span style="float:right;">more</span></a>
 											</div>
@@ -118,7 +123,8 @@
 				</div>
 			</div>
 		</div>
-	<?php } ?>
+
 
 </div>
+{% endfor %}
 {% endblock %}

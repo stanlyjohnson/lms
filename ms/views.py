@@ -48,12 +48,21 @@ class Book(View):
 
 def authordetails (request):
     template = 'ms/auth_details.html'
-    authName = request.GET.get('author')
-    authDetails = author.objects.get (name = authName)
-    return render(request,template,{'authDetails':authDetails})
+    authId = request.GET.get('authorid')
+    try:
+        authDetails = author.objects.get (id = authId)
+        bks = book.objects.filter(writtenby = authDetails)
+        return render(request,template,{'authDetails':authDetails, 'books':bks})
+    except :
+        return render(request,template,{'authDetails':{}, 'books':{}})
+
+
 
 def bookdetails (request):
     template = 'ms/book_details.html'
-    bookName = request.GET.get('book')
-    bkDetails = book.GET.get (title = bookName)
-    return render(request,template,{'bkDetails':bkDetails})
+    bookId = request.GET.get('bookid')
+    try:
+        bkDetails = book.objects.get (id = bookId)
+        return render(request,template,{'bkDetails':bkDetails})
+    except:
+        return render(request,template,{'bkDetails':{}})

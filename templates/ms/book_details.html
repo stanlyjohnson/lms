@@ -13,25 +13,30 @@
 
 
 	<div >
+	{% if bkDetails %}
 	<div class="row">
 
 		<div class="col-md-1" style="background-color:white;">
 					<img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/book-icon.png" width=75 height=75></img>
 		</div>
 		<div class="col-md-9" style="background-color:white;">
-		<span style="font-weight:bold;color:black;"><?php echo $var1['name']; ?> </span><span style="color:grey;float:right;">ISBN-<?php echo $var1['isbn']; ?> </span>
+		<span style="font-weight:bold;color:black;">{{bkDetails.title}} </span><span style="color:grey;float:right;">ISBN-{{bkDetails.isbn}}  </span>
 			<div class="row">
 				<div class="col-md-3" style="color:grey;">
-				by <span style="color:black;"><?php
-						$num=$var1['id'];
-						$sql2="SELECT name from author WHERE id=$num";
-						$result2=mysqli_query($conn,$sql2);
-						$var2=mysqli_fetch_assoc($result2);
-						echo $var2['name'];
-
-						?></span>
+				by <span style="color:black;">{{bkDetails.writtenby.name}}</span>
+				</div>
+				<div class="col-md-12" style="color:grey;">
+				<span style="color:black;">{{bkDetails.des}}</span>
 				</div>
 			</div>
+		</div>
+		<div class="col-md-2" >
+			<!-- <a href="/welcome/bookDetails?bookid=<script> echo{{bkDetails.id}}+1</script>" class="btn btn-outline-secondary btn-lg" ">
+			<img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-left-01-128.png" width=75 height=75 />
+					</a>
+			<a href="/welcome/bookDetails?bookid={{bkDetails.id}}-1" class="btn btn-outline-secondary btn-lg" >
+			<img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-128.png" width=75 height=75 />
+					</a> -->
 		</div>
 
 		<div class="col-md-2" >
@@ -44,7 +49,9 @@
 		</div>
 
 	</div>
-
+	{% else %}
+	<span style="color:black;">Book doesn't exist</span>
+	{% endif %}
 	<div class="row">
 		<div class="col-md-1" style="background-color:white;">
 

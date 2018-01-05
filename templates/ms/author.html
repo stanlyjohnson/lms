@@ -10,7 +10,7 @@
 
 	<div class='row'>
 		<div class='col-md-8' style='color:grey;padding-bottom:30px;'>
-		AUTHORS<span style='float:right;'><?php echo $var1['number'] ?>	Authors</span>
+		AUTHORS<span style='float:right;'>	Authors</span>
 		</div>
 	</div>
 
@@ -27,7 +27,7 @@
 					</div>
 
 					<div class='col-md-10'>
-						<span style='font-weight:bold;color:black;'><a href="/welcome/authorDetails?author={{a.name}}">{{a.name}}</a></span><span style='color:grey;float:right;'>Born in {{a.country}}</span>
+						<span style='font-weight:bold;color:black;'><a href="/welcome/authorDetails?authorid={{a.id}}">{{a.name}}</a></span><span style='color:grey;float:right;'>Born in {{a.country}}&nbsp &nbsp</span>
 						<div class='row'>
 						<div class='col-md-4' style='color:black;'>
 						<span style='color:grey;'> age {{a.age}}</span>
@@ -38,7 +38,6 @@
 			</div>
 		</div>
 {% endfor %}
-		<?php if($flag==0) {?>
 		<div class='col-md-4'>
 		<button type='button' class='btn btn-primary btn-block ' style='padding:10px;' href='#' data-toggle='modal' data-target='#exampleModalLong'>Add Author</button>
 		</div>
@@ -105,10 +104,7 @@
     </div>
   </div>
 </div>
-<script>
-$("#submit").click(function()
 
-{
 
 
 {% endblock %}
