@@ -1,37 +1,12 @@
 {% extends 'ms/navbar.html' %}
 {% block body %}
-<?php
-include_once('config.php');
-include_once('navbar1.html');
-
-$id=$_GET['id'];
-$sql1 = "SELECT count(id) as count FROM book WHERE id=$id";
-$result1=mysqli_query($conn,$sql1);
-$var1=mysqli_fetch_assoc($result1);
-
-
-$sql2 = "SELECT * FROM author WHERE id=$id";
-$result2=mysqli_query($conn,$sql2);
-$var2=mysqli_fetch_assoc($result2);
-
-if(!$var2)
-	{
-	echo "<script type='text/javascript'>alert('This author does not exist. Redirecting you.');window.location.href='http://localhost/prasanth/author.php';</script>";
-
-	}
-
-$sql3 = "SELECT * FROM book WHERE id=$id";
-$result3=mysqli_query($conn,$sql3);
-
-
-?>
 
 <body class="p-3 mb-2 bg-light text-white">
 <div class="jumbotron" >
 
 	<div class="row">
 		<div class="col-md-8" style="color:grey;padding-bottom:30px;">
-		<a href="http://localhost/prasanth/author.php">Authors</a> / Details
+		<a href="/welcome/authorDetails">Authors</a> / Details
 		</div>
 	</div>
 
@@ -62,10 +37,10 @@ $result3=mysqli_query($conn,$sql3);
 
 		</div>
 		<div class="col-md-2">
-			<a href="http://localhost/prasanth/auth_details.php?id=<?php echo $var2['id']-1;?>" class="btn btn-outline-secondary btn-lg" ">
+			<a href="/welcome/bookDetails" class="btn btn-outline-secondary btn-lg" ">
 			<img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-left-01-128.png" width=75 height=75 />
         	</a>
-			<a href="http://localhost/prasanth/auth_details.php?id=<?php echo $var2['id']+1;?>" class="btn btn-outline-secondary btn-lg" >
+			<a href="/welcome/authorDetails" class="btn btn-outline-secondary btn-lg" >
 			<img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-128.png" width=75 height=75 />
         	</a>
 		</div>
@@ -132,7 +107,7 @@ $result3=mysqli_query($conn,$sql3);
 											<?php echo $row['description'];?>
 											</div>
 											<div class="col-md-1" style="color:black;padding-left:0px;padding-left:0px">
-											.........<a href="http://localhost/prasanth/book_details.php?id=<?php echo $row['book_id'];?>" ><span style="float:right;">more</span></a>
+											.........<a href="/welcome/authorDetails" ><span style="float:right;">more</span></a>
 											</div>
 										</div>
 									</div>

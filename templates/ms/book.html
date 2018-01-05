@@ -1,22 +1,6 @@
 {% extends 'ms/navbar.html' %}
 {% block body %}
-<?php
-include_once('config.php');
-include_once('navbar.html');
 
-
-$sql1 = "SELECT name FROM author";
-$result1=mysqli_query($conn,$sql1);
-
-$sql2="SELECT count(id) AS number FROM book";
-$result2=mysqli_query($conn,$sql2);
-$var2=mysqli_fetch_assoc($result2);
-
-$sql3="SELECT * from book";
-$result3=mysqli_query($conn,$sql3);
-
-$flag=0;
-?>
 <body class="p-3 mb-2 bg-light text-white">
 <div class="jumbotron" >
 
@@ -123,29 +107,5 @@ $flag=0;
   </div>
 </div>
 
-<script>
-$("#submit").click(function()
 
-{
-
-$.ajax({
-       url: 'http://localhost/prasanth/book_input.php',
-	   type:'POST',
-       dataType: 'text',
-	   data:
-	   {
-		name:$('#name').val(),
-		author:$('#author').val(),
-		isbn:$('#isbn').val(),
-		desc:$('#desc').val(),
-		},
-       success: function(data){
-	   console.log(data);
-	    window.location.reload();
-
-       }
-    });
-
-});
-</script>
 {% endblock %}

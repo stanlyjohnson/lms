@@ -1,26 +1,11 @@
 {% extends 'ms/navbar.html' %}
 {% block body %}
-<?php
-include_once('config.php');
-include_once('navbar1.html');
-?>
+
 
 </body>
 <div class="jumbotron" >
 
-<?php
-$sql = "SELECT count(id) AS number FROM author";
-//echo $sql;
-$result1=mysqli_query($conn,$sql);
 
-$var1=mysqli_fetch_assoc($result1);
-
-
-$sql2 = "SELECT * FROM author";
-//echo $sql2;
-//$result2=mysqli_query($conn,$sql1);
-$result2=mysqli_query($conn,$sql2);
-$flag=0;
 ?>
 
 	<div class='row'>
@@ -31,7 +16,6 @@ $flag=0;
 
 	<div class='row'>
 
-<?php while($row=mysqli_fetch_assoc($result2)){ ?>
 		{% for a in authors %}
 		<div class='col-md-8'>
 
@@ -58,8 +42,6 @@ $flag=0;
 		<div class='col-md-4'>
 		<button type='button' class='btn btn-primary btn-block ' style='padding:10px;' href='#' data-toggle='modal' data-target='#exampleModalLong'>Add Author</button>
 		</div>
-		<?php }$flag=1;?>
-<?php } ?>
 	</div>
 </div>
 
@@ -128,28 +110,5 @@ $("#submit").click(function()
 
 {
 
-$.ajax({
-       url: 'http://localhost/prasanth/auth_input.php',
-	   type:'POST',
-       dataType: 'text',
-	   data:
-	   {name:$('#name').val(),
-		age:$('#age').val(),
-		gender:$('#sel1').val(),
-		bornin:$('#bornin').val(),
-		about:$('#about').val(),
 
-		},
-       success: function(data){
-	   console.log(data);
-
-       window.location.reload();
-
-
-
-       }
-    });
-
-});
-</script>
 {% endblock %}
