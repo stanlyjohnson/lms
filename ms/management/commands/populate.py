@@ -3,7 +3,7 @@ from ms.models import author, book
 
 des = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
 
-auth = [["Ruskin Bond",83,"Britain"], ["Chetan Bhagat",43,"India"], ["Arundhati Roy",56,"India"], ["R. K. Narayan",95,"India"]]
+auth = [["Ruskin Bond",83,"Britain",True], ["Chetan Bhagat",43,"India",True], ["Arundhati Roy",56,"India",False], ["R. K. Narayan",95,"India",True]]
 
 class Command (BaseCommand):
     arg =''
@@ -16,7 +16,7 @@ class Command (BaseCommand):
             aauth_iter = iter(aauth)
             aname = next(aauth_iter)
             print(aname)
-            record = author(name = aname , age = next(aauth_iter) , country= next(aauth_iter) , about = des)
+            record = author(name = aname , age = next(aauth_iter) , country = next(aauth_iter), male = next(aauth_iter) , about = des)
             record.save();
 
         bk = [["Ruskin Bond", "The room on the Roof","0140107835"],["Ruskin Bond","A Flight of Pigeons", "0-670-04927-1"],["Ruskin Bond","The Adventures of Rusty","9788185039534"],["Chetan Bhagat","Half Girlfriend","9788129135728"],["Chetan Bhagat","One Indian Girl","9781329985841"],["Chetan Bhagat","Revolution 2020","9788129118806"],

@@ -8,6 +8,7 @@ class author (models.Model):
 
     name = models.CharField(max_length = 50)
     age = models.PositiveSmallIntegerField(validators=[MaxValueValidator(100), MinValueValidator(1)])
+    male = models.BooleanField(default=True) 
     country = models.CharField(max_length=20)
     about = models.TextField(max_length = 300)
 

@@ -13,7 +13,7 @@ class Author(View):
         context = {}
         template = 'ms/author.html'
         authors = author.objects.all()
-        return render(request,template,{'authors':authors, 'aForm': auth_form})
+        return render(request,template,{'authors':authors, 'aForm': auth_form, 'count':authors.count()})
 
     def post (self, request):
         context = {}
@@ -23,14 +23,14 @@ class Author(View):
             auth_app = authForm.save(commit=False)
             auth_app.save()
         authors = author.objects.all()
-        return render(request,template,{'authors':authors,  'aForm': auth_form})
+        return render(request,template,{'authors':authors,  'aForm': auth_form, 'count':authors.count()})
 
 class Book(View):
     def get (self, request):
         context = {}
         template = 'ms/book.html'
         books = book.objects.all()
-        return render(request,template,{'books':books, 'bForm': book_form})
+        return render(request,template,{'books':books, 'bForm': book_form, 'count':books.count()})
 
     def post (self, request):
         context = {}
@@ -38,10 +38,9 @@ class Book(View):
         bookForm = book_form(data = request.POST)
         if bookForm.is_valid():
             book_app = bookForm.save(commit = false)
-            book_app.writtenby = author.objects.get(name = n)
             book_app.save()
         books = book.objects.all()
-        return render(request,template,{'books':books, 'bForm': book_form})
+        return render(request,template,{'books':books, 'bForm': book_form, 'count':books.count()})
         pass
 
 def authordetails (request):

@@ -10,7 +10,7 @@
 
 	<div class='row'>
 		<div class='col-md-8' style='color:grey;padding-bottom:30px;'>
-		AUTHORS<span style='float:right;'>	Authors</span>
+		AUTHORS<span style='float:right;'> {{count}} Authors</span>
 		</div>
 	</div>
 
@@ -30,7 +30,7 @@
 						<span style='font-weight:bold;color:black;'><a href="/welcome/authorDetails?authorid={{a.id}}">{{a.name}}</a></span><span style='color:grey;float:right;'>Born in {{a.country}}&nbsp &nbsp</span>
 						<div class='row'>
 						<div class='col-md-4' style='color:black;'>
-						<span style='color:grey;'> age {{a.age}}</span>
+						<span style='color:grey;'> age {{a.age}}/ {% if a.sex %} Male {% else %} Female {% endif %}</span>
 						</div>
 						</div>
 					</div>
