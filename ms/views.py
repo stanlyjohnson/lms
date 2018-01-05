@@ -37,7 +37,7 @@ class Book(View):
         template = 'ms/book.html'
         bookForm = book_form(data = request.POST)
         if bookForm.is_valid():
-            book_app = bookForm.save(commit = false)
+            book_app = bookForm.save(commit = False)
             book_app.save()
         books = book.objects.all()
         return render(request,template,{'books':books, 'bForm': book_form, 'count':books.count()})
