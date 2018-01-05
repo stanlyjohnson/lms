@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from .models import *
 from ms.forms import *
@@ -38,7 +38,6 @@ class Book(View):
         bookForm = book_form(data = request.POST)
         if bookForm.is_valid():
             book_app = bookForm.save(commit = false)
-            # n = book_app.name
             book_app.writtenby = author.objects.get(name = n)
             book_app.save()
         books = book.objects.all()
@@ -46,22 +45,24 @@ class Book(View):
         pass
 
 def authordetails (request):
-    template = 'ms/auth_details.html'
+    template = 'ms/authDetails.html'
     authId = request.GET.get('authorid')
     try:
         authDetails = author.objects.get (id = authId)
         bks = book.objects.filter(writtenby = authDetails)
         return render(request,template,{'authDetails':authDetails, 'books':bks})
     except :
-        return render(request,template,{'authDetails':{}, 'books':{}})
+        authDetails = author.objects.all().first()
+        return HttpResponseRedirect('/welcome/authorDetails?authorid=%d'%(authDetails.id))
 
 
 
 def bookdetails (request):
-    template = 'ms/book_details.html'
+    template = 'ms/bookDetails.html'
     bookId = request.GET.get('bookid')
     try:
         bkDetails = book.objects.get (id = bookId)
         return render(request,template,{'bkDetails':bkDetails})
     except:
-        return render(request,template,{'bkDetails':{}})
+        bkDetails = book.objects.all().first()
+        return HttpResponseRedirect('/welcome/bookDetails?bookid=%d'%(bkDetails.id))

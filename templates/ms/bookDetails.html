@@ -1,4 +1,4 @@
-{% extends 'ms/navbar.html' %}
+{% extends 'ms/base.html' %}
 {% block body %}
 
 
@@ -26,26 +26,17 @@
 				by <span style="color:black;">{{bkDetails.writtenby.name}}</span>
 				</div>
 				<div class="col-md-12" style="color:grey;">
-				<span style="color:black;">{{bkDetails.des}}</span>
+				<span style="color:black;">{{bkDetails.prologue}}</span>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-2" >
-			<!-- <a href="/welcome/bookDetails?bookid=<script> echo{{bkDetails.id}}+1</script>" class="btn btn-outline-secondary btn-lg" ">
+			<a href="/welcome/bookDetails?bookid={{bkDetails.id|add:"-1"}}" class="btn btn-outline-secondary btn-lg" ">
 			<img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-left-01-128.png" width=75 height=75 />
 					</a>
-			<a href="/welcome/bookDetails?bookid={{bkDetails.id}}-1" class="btn btn-outline-secondary btn-lg" >
+			<a href="/welcome/bookDetails?bookid={{bkDetails.id|add:"+1"}}" class="btn btn-outline-secondary btn-lg" >
 			<img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-128.png" width=75 height=75 />
-					</a> -->
-		</div>
-
-		<div class="col-md-2" >
-			<a href="/welcome/bookDetails" class="btn btn-outline-secondary btn-lg" ">
-			<img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-left-01-128.png" width=75 height=75 />
-        	</a>
-			<a href="/welcome/authorDetails" class="btn btn-outline-secondary btn-lg" >
-			<img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-128.png" width=75 height=75 />
-        	</a>
+					</a>
 		</div>
 
 	</div>
@@ -60,10 +51,6 @@
 		<?php echo $var1['description'];?>
 		</div>
 
-		<div class="col-md-2" style="color:grey;">
-		<br>
-		Navigate to Previous / Next Book
-		</div>
 	</div>
 	</div>
 </div>
