@@ -35,9 +35,7 @@ class Book(View):
     def post (self, request):
         context = {}
         template = 'ms/book.html'
-        data=request.POST
-        n = data.pop('name')
-        bookForm = book_form(data= data)
+        bookForm = book_form(data = request.POST)
         if bookForm.is_valid():
             book_app = bookForm.save(commit = false)
             # n = book_app.name

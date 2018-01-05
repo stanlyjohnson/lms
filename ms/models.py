@@ -11,7 +11,7 @@ class author (models.Model):
     country = models.CharField(max_length=20)
     about = models.TextField(max_length = 300)
 
-    def _str_ (self):
+    def __str__ (self):
         return self.name
     def __unicode__ (self):
         return self.name
